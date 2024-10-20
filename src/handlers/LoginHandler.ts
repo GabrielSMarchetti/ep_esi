@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import { UserRepository } from '../repositories/user_repository';
-import { IHandler } from '../interfaces/Ihandler';
+import { UserRepository } from '../repositories/UserRepository';
+import { IHandler } from '../interfaces/IHandler';
 
 class LoginHandler implements IHandler {
     private userRepository: UserRepository;
@@ -15,7 +15,7 @@ class LoginHandler implements IHandler {
         const { username, password } = req.body;
 
         try {
-            const user = await this.userRepository.findOneByUsename(username);
+            const user = await this.userRepository.findOneByUsername(username);
             if (!user) {
                 res.status(401).json({ message: 'Invalid username or password' });
                 return;

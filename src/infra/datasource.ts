@@ -1,31 +1,28 @@
 import { DataSource } from 'typeorm';
-import { User } from '../entities/user';
+import { User } from '../entities/User';
 
-export class PostgresDataSource {
-    private static instance: DataSource;
+export class SqliteDataSource extends DataSource {
+    private static instance: SqliteDataSource;
 
-    private constructor() {}
-
-    public static getInstance(): DataSource {
-        if (!PostgresDataSource.instance) {
-            PostgresDataSource.instance = new DataSource({
-                type: 'postgres',
-                host: 'localhost',
-                port: 5432,
-                username: 'your_username',
-                password: 'your_password',
-                database: 'your_database',
-                entities: [User],
-                synchronize: true,
-            });
-        }
-        return PostgresDataSource.instance;
+    private constructor() {
+        super({
+            type: 'sqlite',
+            database: 'database/your_database.sqlite',
+            entities: [
+                User
+            ],
+            synchronize: true,
+        });
     }
 
-    public static async initialize(): Promise<void> {
-        const dataSource = PostgresDataSource.getInstance();
-        if (!dataSource.isInitialized) {
-            await dataSource.initialize();
+    public initialize(): Promise<this> {
+        return super.initialize();
+    }
+
+    public static getInstance(): SqliteDataSource {
+        if (!SqliteDataSource.instance) {
+            SqliteDataSource.instance = new SqliteDataSource();
         }
+        return SqliteDataSource.instance;
     }
 }

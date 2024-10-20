@@ -1,3 +1,3 @@
-export interface IFactory {
-    create(...args: any[]): any;
+export interface IFactory<T> {
+    create(...args: any[]): T;
 }
