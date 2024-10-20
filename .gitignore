@@ -1,0 +1,8 @@
+#ignore build
+dist/
+
+#ignore node_modules
+node_modules/
+
+#ignore .env
+.env
