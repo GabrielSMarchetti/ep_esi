@@ -6,7 +6,7 @@ export class LoginHandlerFactory implements IFactory<LoginHandler> {
 
     constructor() {}
 
-    create(user_repository: UserRepository): LoginHandler {
-        return new LoginHandler(user_repository);
+    create(userRepository: UserRepository): LoginHandler {
+        return new LoginHandler(userRepository);
     }
 }

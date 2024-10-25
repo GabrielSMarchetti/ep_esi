@@ -27,7 +27,7 @@ class LoginHandler implements IHandler {
                 return;
             }
 
-            const token = jwt.sign({ id: user.user_id, username: user.username }, 'your_jwt_secret', {
+            const token = jwt.sign({ id: user.username, username: user.username }, 'your_jwt_secret', {
                 expiresIn: '1h',
             });
 

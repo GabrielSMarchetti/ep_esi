@@ -1,5 +1,6 @@
 import { UserRepository } from "../repositories/UserRepository";
 import { User } from "../entities/User";
+import { Student } from "../entities/Student";
 import { SqliteDataSource } from "./DataSource";
 
 export class RepositoryManager {
@@ -8,8 +9,10 @@ export class RepositoryManager {
 
     private constructor() {
         const SqliteDataSourceInstance = SqliteDataSource.getInstance();
+
         this.repositoryMap = new Map();
         this.repositoryMap.set(User, new UserRepository(SqliteDataSourceInstance));
+        this.repositoryMap.set(Student, new UserRepository(SqliteDataSourceInstance));
     }
 
     public static getInstance(): RepositoryManager {

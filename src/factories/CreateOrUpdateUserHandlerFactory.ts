@@ -6,7 +6,7 @@ export class CreateOrUpdateUserHandlerFactory implements IFactory<CreateOrUpdate
 
     constructor() {}
 
-    public create(user_repository: UserRepository): CreateOrUpdateUserHandler {
-        return new CreateOrUpdateUserHandler(user_repository);
+    public create(userRepository: UserRepository): CreateOrUpdateUserHandler {
+        return new CreateOrUpdateUserHandler(userRepository);
     }
 }

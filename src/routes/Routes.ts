@@ -12,8 +12,12 @@ router.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
+router.get('/users/:username?', asyncErrorHandler(async (req: Request, res: Response) =>
+    await new UserController(repositoryManager.getRepository(User))
+    .getUserByUsername(req, res)));
+
 router.post('/users', asyncErrorHandler(async (req: Request, res: Response) =>
     await new UserController(repositoryManager.getRepository(User))
-    .post(req, res)));
+    .createOrUpdate(req, res)));
 
 export default router;

@@ -1,5 +1,6 @@
 import { DataSource } from 'typeorm';
 import { User } from '../entities/User';
+import { Student } from '../entities/Student';
 
 export class SqliteDataSource extends DataSource {
     private static instance: SqliteDataSource;
@@ -9,7 +10,8 @@ export class SqliteDataSource extends DataSource {
             type: 'sqlite',
             database: 'database/your_database.sqlite',
             entities: [
-                User
+                User,
+                Student
             ],
             synchronize: true,
         });
