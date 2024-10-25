@@ -4,7 +4,7 @@ import { IHandler } from '../interfaces/IHandler';
 import bcrypt from 'bcrypt';
 import { validateUserType } from '../enums/UserTypes';
 
-export class CreateOrUpdateUserHandler implements IHandler {
+export class CreateUserHandler implements IHandler {
     private userRepository: UserRepository
 
     constructor(userRepository: UserRepository) {
@@ -20,7 +20,7 @@ export class CreateOrUpdateUserHandler implements IHandler {
         const salt = await bcrypt.genSalt(10);
         userData.password = await bcrypt.hash(userData.password, salt);
         userData.salt = salt;
-        const user = await this.userRepository.createOrUpdate(userData);
+        const user =  this.userRepository.create(userData);
         res.status(200).json(user);
     }
 }

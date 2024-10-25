@@ -1,6 +1,7 @@
 import { UserRepository } from "../repositories/UserRepository";
 import { User } from "../entities/User";
 import { Student } from "../entities/Student";
+import { Report } from "../entities/Report";
 import { SqliteDataSource } from "./DataSource";
 
 export class RepositoryManager {
@@ -13,6 +14,7 @@ export class RepositoryManager {
         this.repositoryMap = new Map();
         this.repositoryMap.set(User, new UserRepository(SqliteDataSourceInstance));
         this.repositoryMap.set(Student, new UserRepository(SqliteDataSourceInstance));
+        this.repositoryMap.set(Report, new UserRepository(SqliteDataSourceInstance));
     }
 
     public static getInstance(): RepositoryManager {

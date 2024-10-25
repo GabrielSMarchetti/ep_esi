@@ -3,6 +3,10 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { UserRepository } from '../repositories/UserRepository';
 import { IHandler } from '../interfaces/IHandler';
+import dotenv from 'dotenv';
+
+dotenv.config();
+const jwtSecret = process.env.JWT_SECRET_KEY as string;
 
 class LoginHandler implements IHandler {
     private userRepository: UserRepository;
@@ -27,7 +31,7 @@ class LoginHandler implements IHandler {
                 return;
             }
 
-            const token = jwt.sign({ id: user.username, username: user.username }, 'your_jwt_secret', {
+            const token = jwt.sign({ id: user.username, username: user.username, roles: user.roles }, jwtSecret , {
                 expiresIn: '1h',
             });
 

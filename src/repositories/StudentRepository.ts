@@ -11,7 +11,8 @@ export class StudentRepository extends Repository<Student> {
         return Student ?? undefined;
     }
 
-    async createOrUpdate(Student: Student): Promise<Student> {
-        return await this.save(Student);
+    async findAllByMentor(mentor: string): Promise<Student[]> {
+        return this.find({ where: { orientador: mentor } });
     }
+
 }

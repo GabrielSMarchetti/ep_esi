@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { UserRepository } from '../repositories/UserRepository';
 import { IHandler } from '../interfaces/IHandler';
 
-export class GetUserByUsernameHandler implements IHandler {
+export class GetAllMentorsHandler implements IHandler {
     private userRepository: UserRepository
 
     constructor(userRepository: UserRepository) {
@@ -10,12 +10,7 @@ export class GetUserByUsernameHandler implements IHandler {
     }
 
     public async handleRequest(req: Request, res: Response): Promise<void> {
-        const username = req.params.username;
-        const user = await this.userRepository.findOneByUsername(username);
-        if (!user) {
-            res.status(404).json({ message: 'User not found' });
-            return;
-        }
-        res.status(200).json(user);
+        const mentors = await this.userRepository.findAllMentors();
+        res.status(200).json(mentors);
     }
 }

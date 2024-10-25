@@ -1,5 +1,6 @@
 import { DataSource, Repository } from 'typeorm';
 import { User } from '../entities/User';
+import { UserTypes } from '../enums/UserTypes';
 
 export class UserRepository extends Repository<User> {
     constructor(dataSource: DataSource) {
@@ -11,7 +12,9 @@ export class UserRepository extends Repository<User> {
         return user ?? undefined;
     }
 
-    async createOrUpdate(user: User): Promise<User> {
-        return await this.save(user);
+    async findAllMentors(): Promise<User[]> {
+        const mentors = await this.find({ where: { user_type: UserTypes.MENTOR } });
+        return mentors;
     }
+
 }

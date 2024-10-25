@@ -8,7 +8,7 @@ export class SqliteDataSource extends DataSource {
     private constructor() {
         super({
             type: 'sqlite',
-            database: 'database/your_database.sqlite',
+            database: 'database/post_graduation_report.sqlite',
             entities: [
                 User,
                 Student

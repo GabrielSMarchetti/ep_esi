@@ -1,7 +1,7 @@
 export enum UserTypes {
     STUDENT = "student",
-    PROFESSOR = "professor",
-    STAFF = "staff"
+    MENTOR = "mentor",
+    COORDINATOR = "coordinator"
 }
 
 export function validateUserType(type: string): boolean {

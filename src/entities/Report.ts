@@ -57,9 +57,24 @@ export class Report {
     @Column()
     artigosAceitosPublicados: number;
 
+    @Column()
+    atividadesAcademicas: string;
+
+    @Column()   
+    resumoAtividadesPesquisa: string;
+
+    @Column()
+    declaracaoAdicional: string;
+
     @Column({
         type: "enum",
-        enum: ['Adequado', 'Adequado Com Ressalvas', 'Insatisfatório']
+        enum: ['Sim', 'Não']
+    })
+    dificuldadeApoio: 'Sim' | 'Não';
+
+    @Column({
+        type: "enum",
+        enum: ['Adequado', 'Adequado Com Ressalvas', 'Insatisfatório', 'Sem parecer']
     })
     professorParecer: string;
 
@@ -68,7 +83,7 @@ export class Report {
 
     @Column({
         type: "enum",
-        enum: ['Adequado', 'Adequado Com Ressalvas', 'Insatisfatório']
+        enum: ['Adequado', 'Adequado Com Ressalvas', 'Insatisfatório', 'Sem parecer']
     })
     coordenadorParecer: string;
 
@@ -93,34 +108,36 @@ export class Report {
         artigosFaseEscrita: number,
         artigosSubmetidos: number,
         artigosAceitosPublicados: number,
-        professorParecer: string,
-        professorComentario: string,
-        coordenadorParecer: string,
-        coordenadorComentario: string,
+        atividadesAcademicas: string,
+        resumoAtividadesPesquisa: string,
+        declaracaoAdicional: string,
+        dificuldadeApoio: 'Sim' | 'Não',
+        professorParecer?: string,
+        professorComentario?: string,
+        coordenadorParecer?: string,
+        coordenadorComentario?: string,
     ) {
         this.numeroUSP = numeroUSP;
         this.relatorioSemestralDeclara = relatorioSemestralDeclara;
         this.dataAtualizacaoLattes = dataAtualizacaoLattes;
         this.resultadoUltimoRelatorio = resultadoUltimoRelatorio;
-
         this.disciplinasAprovacoes = disciplinasAprovacoes;
         this.disciplinasReprovacoes = disciplinasReprovacoes;
         this.disciplinasReprovacoesDesdeInicio = disciplinasReprovacoesDesdeInicio;
-
         this.exameProficienciaIdiomas = exameProficienciaIdiomas;
         this.exameQualificacao = exameQualificacao;
-
         this.prazoQualificacao = prazoQualificacao;
         this.prazoDissertacao = prazoDissertacao;
-
         this.artigosFaseEscrita = artigosFaseEscrita;
         this.artigosSubmetidos = artigosSubmetidos;
         this.artigosAceitosPublicados = artigosAceitosPublicados;
-
-        this.professorParecer = professorParecer;
-        this.professorComentario = professorComentario;
-
-        this.coordenadorParecer = coordenadorParecer;
-        this.coordenadorComentario = coordenadorComentario;
+        this.atividadesAcademicas = atividadesAcademicas;
+        this.resumoAtividadesPesquisa = resumoAtividadesPesquisa;
+        this.declaracaoAdicional = declaracaoAdicional;
+        this.dificuldadeApoio = dificuldadeApoio;
+        this.professorParecer = professorParecer ?? 'Sem parecer';
+        this.professorComentario = professorComentario ?? 'Sem comentário';
+        this.coordenadorParecer = coordenadorParecer ?? 'Sem parecer';
+        this.coordenadorComentario = coordenadorComentario ?? 'Sem comentário';
     }
 }
