@@ -15,10 +15,7 @@ export class Report {
     @Column()
     dataAtualizacaoLattes: string;
 
-    @Column({
-        type: "enum",
-        enum: ['Aprovado', 'Aprovado com ressalvas', 'Insatisfatório', 'Não se aplica (é o meu primeiro relatório)']
-    })
+    @Column()
     resultadoUltimoRelatorio: 'Aprovado' | 'Aprovado com ressalvas' | 'Insatisfatório' | 'Não se aplica (é o meu primeiro relatório)';
 
     @Column()
@@ -30,16 +27,10 @@ export class Report {
     @Column()
     disciplinasReprovacoesDesdeInicio: number;
 
-    @Column({
-        type: "enum",
-        enum: ['Aprovado', 'Reprovado', 'Não']
-    })
+    @Column()
     exameProficienciaIdiomas: 'Aprovado' | 'Reprovado' | 'Não';
 
-    @Column({
-        type: "enum",
-        enum: ['Aprovado', 'Reprovado', 'Não']
-    })
+    @Column()
     exameQualificacao: 'Aprovado' | 'Reprovado' | 'Não';
 
     @Column()
@@ -66,26 +57,17 @@ export class Report {
     @Column()
     declaracaoAdicional: string;
 
-    @Column({
-        type: "enum",
-        enum: ['Sim', 'Não']
-    })
+    @Column()
     dificuldadeApoio: 'Sim' | 'Não';
 
-    @Column({
-        type: "enum",
-        enum: ['Adequado', 'Adequado Com Ressalvas', 'Insatisfatório', 'Sem parecer']
-    })
-    professorParecer: string;
+    @Column()
+    professorParecer: 'Aprovado' | 'Aprovado com ressalvas' | 'Insatisfatório' | 'Sem parecer';
 
     @Column()
     professorComentario: string;
 
-    @Column({
-        type: "enum",
-        enum: ['Adequado', 'Adequado Com Ressalvas', 'Insatisfatório', 'Sem parecer']
-    })
-    coordenadorParecer: string;
+    @Column()
+    coordenadorParecer: 'Aprovado' | 'Aprovado com ressalvas' | 'Insatisfatório' | 'Sem parecer';
 
     @Column()
     coordenadorComentario: string;
@@ -112,9 +94,9 @@ export class Report {
         resumoAtividadesPesquisa: string,
         declaracaoAdicional: string,
         dificuldadeApoio: 'Sim' | 'Não',
-        professorParecer?: string,
+        professorParecer?: 'Aprovado' | 'Aprovado com ressalvas' | 'Insatisfatório' | 'Sem parecer',
         professorComentario?: string,
-        coordenadorParecer?: string,
+        coordenadorParecer?: 'Aprovado' | 'Aprovado com ressalvas' | 'Insatisfatório' | 'Sem parecer',
         coordenadorComentario?: string,
     ) {
         this.numeroUSP = numeroUSP;

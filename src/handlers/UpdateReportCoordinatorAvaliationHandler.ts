@@ -20,7 +20,7 @@ export class UpdateReportCoordinatorAvaliationHandler implements IHandler {
         }
         report.coordenadorParecer = coordinatorOpinion;
         report.coordenadorComentario = coordinatorComment;
-        this._ReportRepository.create((report));
+        await this._ReportRepository.save((report));
         res.status(200).send();
     }
 }

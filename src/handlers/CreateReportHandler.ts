@@ -37,7 +37,7 @@ export class CreateReportHandler implements IHandler {
                 reportDto.declaracaoAdicional,
                 reportDto.dificuldadeApoio);
         
-        this._ReportRepository.create((report));
-        res.status(200).send();
+        const newReport = await this._ReportRepository.save((report));
+        res.status(200).send(newReport);
     }
 }

@@ -12,11 +12,16 @@ export class CreateStudentHandler implements IHandler {
 
     public async handleRequest(req: Request, res: Response): Promise<void> {
         const studentData = req.body;        
-        if (!validateCourseType(studentData.course)) {
-            res.status(400).json({ error: 'Invalid course' });
+        if (!validateCourseType(studentData.curso)) {
+            res.status(400).json({ error: 'Invalid curso' });
             return;
         }
-        const student = this.StudentRepository.create(studentData);
+        const studentExists = await this.StudentRepository.findBy({ numeroUSP: studentData.numeroUSP });
+        if (studentExists) {
+            res.status(409).json({ error: 'Student already exists' });
+            return;
+        }
+        const student = await this.StudentRepository.save(studentData);
         res.status(200).json(student);
     }
 }

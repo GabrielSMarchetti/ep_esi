@@ -26,7 +26,7 @@ export class Student {
     nacionalidade: string;
 
     @Column()
-    curso: CourseTypes;
+    curso: string;
 
     @Column()
     orientador: string;
@@ -56,7 +56,7 @@ export class Student {
     numeroUSP: string, nomeCompleto: string,
     email: string, dataNascimento: Date,
     rg: string, localNascimento: string,
-    nacionalidade: string, curso: CourseTypes,
+    nacionalidade: string, curso: string,
     orientador: string, linkLattes: string,
     dataMatricula: Date, dataAprovacaoExameQualificacao: Date,
     dataAprovacaoExameProficiencia: Date, dataLimiteDepositoTrabalhoFinal: Date,

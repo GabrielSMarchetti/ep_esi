@@ -1,19 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt, { JwtPayload } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
+import { IDecodedJWTToken } from '../interfaces/IDecodedJWTToken';
 import { Roles } from '../config/Roles';
-import dotenv from 'dotenv';
 
-dotenv.config();
-const jwtSecret = process.env.JWT_SECRET_KEY as string;
-
-declare module 'express-serve-static-core' {
-    interface Request {
-        decodedJwt?: JwtPayload;
-    }
-}
 
 export function verifyToken(req: Request, res: Response, next: NextFunction): void {
-    const token = req.headers['authorization'];
+    const jwtSecret = process.env.JWT_SECRET_KEY as jwt.PublicKey;
+    const token = req.headers['authorization'] as string;
     if (!token) {
         res.status(403).json({ message: 'No token provided' });
         return;
@@ -25,7 +18,7 @@ export function verifyToken(req: Request, res: Response, next: NextFunction): vo
             return;
         }
 
-        req.decodedJwt = decoded as JwtPayload;
+        req.decodedJwt = decoded as IDecodedJWTToken;
         next();
     });
 }

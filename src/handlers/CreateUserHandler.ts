@@ -12,7 +12,11 @@ export class CreateUserHandler implements IHandler {
     }
 
     public async handleRequest(req: Request, res: Response): Promise<void> {
-        const userData = req.body;        
+        const userData = req.body;    
+        if (!userData.username || !userData.password || !userData.user_type) {
+            res.status(400).json({ error: 'Missing required fields' });
+            return;
+        }
         if (!validateUserType(userData.user_type)) {
             res.status(400).json({ error: 'Invalid usertype' });
             return;
@@ -20,7 +24,7 @@ export class CreateUserHandler implements IHandler {
         const salt = await bcrypt.genSalt(10);
         userData.password = await bcrypt.hash(userData.password, salt);
         userData.salt = salt;
-        const user =  this.userRepository.create(userData);
+        const user = await this.userRepository.save(userData);
         res.status(200).json(user);
     }
 }

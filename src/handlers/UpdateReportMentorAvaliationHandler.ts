@@ -20,7 +20,7 @@ export class UpdateReportProfessorAvaliationHandler implements IHandler {
         }
         report.professorParecer = professorOpinion;
         report.professorComentario = professorComment;
-        this._ReportRepository.create((report));
+        await this._ReportRepository.save((report));
         res.status(200).send();
     }
 }
