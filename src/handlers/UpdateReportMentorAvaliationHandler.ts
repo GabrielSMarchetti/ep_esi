@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { ReportRepository } from '../repositories/ReportRepository';
 import { IHandler } from '../interfaces/IHandler';
 
-export class UpdateReportProfessorAvaliationHandler implements IHandler {
+export class UpdateReportProfessorFeedbackHandler implements IHandler {
     private _ReportRepository: ReportRepository;
 
     constructor(reportRepository: ReportRepository) {
