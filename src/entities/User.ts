@@ -1,11 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, PrimaryColumn, Generated } from 'typeorm';
+import { UserTypes } from '../enums/UserTypes';
 
 @Entity()
 export class User {
-    @PrimaryGeneratedColumn()
-    user_id: number;
 
-    @Column({ unique: true })
+    @PrimaryColumn({ unique: true })
     username: string;
 
     @Column()
@@ -15,13 +14,12 @@ export class User {
     password: string;
 
     @Column()
-    user_type: number;
+    user_type: UserTypes;
 
     @Column("simple-array")
     roles: string[];
 
-    constructor(user_id: number, username: string, salt: string, password: string, user_type: number, roles: string[]) {
-        this.user_id = user_id;
+    constructor(username: string, salt: string, password: string, user_type: UserTypes, roles: string[]) {
         this.username = username;
         this.salt = salt;
         this.password = password;

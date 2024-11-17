@@ -1,0 +1,16 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "sadsa",
+            "database": "${workspaceFolder:ep_esi_back}/database/post_graduation_report.sqlite"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "teste1",
+            "database": "${workspaceFolder:ep_esi_back}/database/post_graduation_report.sqlite"
+        }
+    ]
+}

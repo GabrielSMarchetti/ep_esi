@@ -1,3 +1,3 @@
 export interface IFactory<T> {
-    create(...args: any[]): T;
+    create(handlerConstructor: new (repository: any) => T): T;
 }

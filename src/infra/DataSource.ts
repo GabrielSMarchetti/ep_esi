@@ -1,5 +1,7 @@
 import { DataSource } from 'typeorm';
 import { User } from '../entities/User';
+import { Student } from '../entities/Student';
+import { Report } from '../entities/Report';
 
 export class SqliteDataSource extends DataSource {
     private static instance: SqliteDataSource;
@@ -7,16 +9,23 @@ export class SqliteDataSource extends DataSource {
     private constructor() {
         super({
             type: 'sqlite',
-            database: 'database/your_database.sqlite',
+            database: 'database/post_graduation_report.sqlite',
             entities: [
-                User
+                User,
+                Student,
+                Report
             ],
             synchronize: true,
         });
     }
 
     public initialize(): Promise<this> {
+        console.log('Database initializing');
         return super.initialize();
+    }
+
+    public static isInitialized(): boolean {
+        return !!SqliteDataSource.instance;
     }
 
     public static getInstance(): SqliteDataSource {

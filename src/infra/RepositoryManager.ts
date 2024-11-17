@@ -1,15 +1,17 @@
-import { UserRepository } from "../repositories/UserRepository";
-import { User } from "../entities/User";
-import { SqliteDataSource } from "./DataSource";
+import { UserRepository } from '../repositories/UserRepository';
+import { StudentRepository } from '../repositories/StudentRepository';
+import { ReportRepository } from '../repositories/ReportRepository';
+import { User } from '../entities/User';
+import { Student } from '../entities/Student';
+import { Report } from '../entities/Report';
+import { SqliteDataSource } from './DataSource';
 
 export class RepositoryManager {
     private static instance: RepositoryManager;
     private repositoryMap: Map<any, any>;
 
     private constructor() {
-        const SqliteDataSourceInstance = SqliteDataSource.getInstance();
-        this.repositoryMap = new Map();
-        this.repositoryMap.set(User, new UserRepository(SqliteDataSourceInstance));
+        this.repositoryMap = new Map<any, any>();
     }
 
     public static getInstance(): RepositoryManager {
@@ -17,6 +19,19 @@ export class RepositoryManager {
             RepositoryManager.instance = new RepositoryManager();
         }
         return RepositoryManager.instance;
+    }
+
+    public initialize() {
+        const dataSource = SqliteDataSource.getInstance();
+
+        this.repositoryMap = new Map<any, any>();
+        this.repositoryMap.set(User, new UserRepository(dataSource));
+        this.repositoryMap.set(Student, new StudentRepository(dataSource));
+        this.repositoryMap.set(Report, new ReportRepository(dataSource));
+    }
+
+    public static isInitialized(): boolean {
+        return !!RepositoryManager.instance;
     }
 
     public getRepository(entityClass: any): any {
