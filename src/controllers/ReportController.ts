@@ -3,8 +3,8 @@ import { Request, Response } from 'express';
 import { ReportRepository } from "../repositories/ReportRepository";
 import { HandlerFactory } from "../factories/HandlerFactory";
 import { CreateReportHandler } from "../handlers/CreateReportHandler";
-import { UpdateReportProfessorAvaliationHandler } from "../handlers/UpdateReportMentorAvaliationHandler";
-import { UpdateReportCoordinatorAvaliationHandler } from "../handlers/UpdateReportCoordinatorAvaliationHandler";
+import { UpdateReportProfessorFeedbackHandler } from "../handlers/UpdateReportMentorAvaliationHandler";
+import { UpdateReportCoordinatorAvaliationHandler as UpdateReportCoordinatorFeedbackHandler } from "../handlers/UpdateReportCoordinatorAvaliationHandler";
 import { GetAllReportsByMentorHandler } from "../handlers/GetAllReportsByMentorHandler";
 import { StudentRepository } from "../repositories/StudentRepository";
 import { GetAllReportsByStudentHandler } from "../handlers/GetAllReportsByStudentHandler";
@@ -32,12 +32,12 @@ export class ReportController implements IController {
         return new GetAllReportsByMentorHandler(this._ReportRepository, this._StudentRepository).handleRequest(req, res);
     }
 
-    public async updateMentorAvaliation(req: Request, res: Response): Promise<void> {
-        return this._HandlerFactory.create(UpdateReportProfessorAvaliationHandler).handleRequest(req, res);
+    public async updateMentorFeedback(req: Request, res: Response): Promise<void> {
+        return this._HandlerFactory.create(UpdateReportProfessorFeedbackHandler).handleRequest(req, res);
     }
 
-    public async updateCoordinatorAvaliation(req: Request, res: Response): Promise<void> {
-        return this._HandlerFactory.create(UpdateReportCoordinatorAvaliationHandler).handleRequest(req, res);
+    public async updateCoordinatorFeedback(req: Request, res: Response): Promise<void> {
+        return this._HandlerFactory.create(UpdateReportCoordinatorFeedbackHandler).handleRequest(req, res);
     }
 
     public async getAllReports(req: Request, res: Response): Promise<void> {

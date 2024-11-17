@@ -27,7 +27,7 @@ export function initializeRouter(){
     router.post('/login', asyncErrorHandler(async (req: Request, res: Response) =>
         await loginController.create(req, res)));
 
-    router.post('/users/createUser', asyncErrorHandler(async (req: Request, res: Response) =>
+    router.post('/users', asyncErrorHandler(async (req: Request, res: Response) =>
             await userController.create(req, res)));
 
     router.get('/users', asyncErrorHandler(async (req: Request, res: Response) =>
@@ -39,37 +39,37 @@ export function initializeRouter(){
     router.get('/users/:username', verifyToken, asyncErrorHandler(async (req: Request, res: Response) =>
         await userController.getUserByUsername(req, res)));
 
-    router.put('/users/updateUser/:username', verifyToken, asyncErrorHandler(async (req: Request, res: Response) =>
+    router.put('/users/:username', verifyToken, asyncErrorHandler(async (req: Request, res: Response) =>
         await userController.update(req, res)));
 
-    router.post('/students/createStudent', verifyToken, asyncErrorHandler(async (req: Request, res: Response) =>
+    router.post('/students', verifyToken, asyncErrorHandler(async (req: Request, res: Response) =>
         await studentController.create(req, res)));
 
     router.get('/students', verifyToken, asyncErrorHandler(async (req: Request, res: Response) =>
         await studentController.getAllStudents(req, res)));
 
-    router.get('/students/getByMentor/:mentor', verifyToken, asyncErrorHandler(async (req: Request, res: Response) =>
+    router.get('/students/mentor/:mentor', verifyToken, asyncErrorHandler(async (req: Request, res: Response) =>
         await studentController.getByMentor(req, res)));
 
-    router.put('/students/updateStudent/:username', verifyToken, asyncErrorHandler(async (req: Request, res: Response) =>
+    router.put('/students/:username', verifyToken, asyncErrorHandler(async (req: Request, res: Response) =>
         await studentController.update(req, res)));
 
-    router.post('/report/createReport', verifyToken, asyncErrorHandler(async (req: Request, res: Response) =>
+    router.post('/report', verifyToken, asyncErrorHandler(async (req: Request, res: Response) =>
         await reportController.create(req, res)));
 
     router.get('/report', verifyToken, asyncErrorHandler(async (req: Request, res: Response) =>
         await reportController.getAllReports(req, res)));
 
-    router.get('/report/getByStudent/:student', verifyToken, asyncErrorHandler(async (req: Request, res: Response) =>
+    router.get('/report/student/:student', verifyToken, asyncErrorHandler(async (req: Request, res: Response) =>
         await reportController.getByStudent(req, res)));
 
-    router.get('/report/getByMentor/:mentor', verifyToken, asyncErrorHandler(async (req: Request, res: Response) =>
+    router.get('/report/mentor/:mentor', verifyToken, asyncErrorHandler(async (req: Request, res: Response) =>
         await reportController.getByMentor(req, res)));
 
-    router.put('/report/updateMentorAvaliation/:student', verifyToken, asyncErrorHandler(async (req: Request, res: Response) =>
-        await reportController.updateMentorAvaliation(req, res)));
+    router.put('/report/update-mentor-feedback/:student', verifyToken, asyncErrorHandler(async (req: Request, res: Response) =>
+        await reportController.updateMentorFeedback(req, res)));
 
-    router.put('/report/updateCoordinatorAvaliation/:student', verifyToken, asyncErrorHandler(async (req: Request, res: Response) =>
-        await reportController.updateCoordinatorAvaliation(req, res)));
+    router.put('/report/update-coordinator-feedback/:student', verifyToken, asyncErrorHandler(async (req: Request, res: Response) =>
+        await reportController.updateCoordinatorFeedback(req, res)));
     return router;
 }
