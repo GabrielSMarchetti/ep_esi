@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { ReportRepository } from '../repositories/ReportRepository';
 import { IHandler } from '../interfaces/IHandler';
 
-export class UpdateReportProfessorFeedbackHandler implements IHandler {
+export class UpdateReportMentorFeedbackHandler implements IHandler {
     private _ReportRepository: ReportRepository;
 
     constructor(reportRepository: ReportRepository) {
@@ -20,7 +20,7 @@ export class UpdateReportProfessorFeedbackHandler implements IHandler {
         }
         report.professorParecer = professorOpinion;
         report.professorComentario = professorComment;
-        await this._ReportRepository.save((report));
-        res.status(200).send();
+        const new_report = await this._ReportRepository.save((report));
+        res.status(200).send(new_report);
     }
 }

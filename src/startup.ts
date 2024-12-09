@@ -8,7 +8,7 @@ import dotenv from 'dotenv';
 dotenv.config({ path: '.env' });
 
 const app: express.Application = express();
-const port: number = 3000;
+const port: number = 8080;
 
 async function startServer() {
     const dataSource = SqliteDataSource.getInstance();
@@ -23,7 +23,9 @@ async function startServer() {
 
         const routes = initializeRouter();
         console.log('Routes initialized');
-
+        
+        const cors = require('cors');
+        app.use(cors());
         app.use(express.json());
         app.use('/api', routes);
 

@@ -10,7 +10,7 @@ export class GetUserByUsernameHandler implements IHandler {
     }
 
     public async handleRequest(req: Request, res: Response): Promise<void> {
-        const username = req.params.username;
+        const username = req.body.username;
         const user = await this.userRepository.findOneByUsername(username);
         if (!user) {
             res.status(404).json({ message: 'User not found' });

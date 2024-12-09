@@ -10,8 +10,11 @@ export class GetAllReportsByStudentHandler implements IHandler {
     }
 
     public async handleRequest(req: Request, res: Response): Promise<void> {
-        const student = req.body.studentId;
-        const report = await this.reportRepository.findAllByStudent(student);
+        if (!req.query.num_usp) {
+            res.status(400).json({ error: 'Invalid num_usp' });
+            return;
+        }
+        const report = await this.reportRepository.findAllByStudent(req.query.num_usp.toString());
         res.status(200).json(report);
     }
 }

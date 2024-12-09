@@ -5,7 +5,7 @@ import { CourseTypes } from '../enums/CourseTypes';
 export class Student {
     
     @PrimaryColumn({ unique: true })
-    numeroUSP: string;
+    num_usp: string;
 
     @Column()
     nomeCompleto: string;
@@ -53,7 +53,7 @@ export class Student {
     disciplinasCursadasReprovadas: string[];
 
     constructor(
-    numeroUSP: string, nomeCompleto: string,
+    num_usp: string, nomeCompleto: string,
     email: string, dataNascimento: Date,
     rg: string, localNascimento: string,
     nacionalidade: string, curso: string,
@@ -61,7 +61,7 @@ export class Student {
     dataMatricula: Date, dataAprovacaoExameQualificacao: Date,
     dataAprovacaoExameProficiencia: Date, dataLimiteDepositoTrabalhoFinal: Date,
     disciplinasCursadasAprovadas: string[], disciplinasCursadasReprovadas: string[]) {
-        this.numeroUSP = numeroUSP;
+        this.num_usp = num_usp;
         this.nomeCompleto = nomeCompleto;
         this.email = email;
         this.dataNascimento = dataNascimento;

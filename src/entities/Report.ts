@@ -7,10 +7,7 @@ export class Report {
     id?: number;
 
     @Column()
-    numeroUSP: string;
-
-    @Column()
-    relatorioSemestralDeclara: string;
+    num_usp: string;
 
     @Column()
     dataAtualizacaoLattes: string;
@@ -76,8 +73,7 @@ export class Report {
     creationDate?: Date;
 
     constructor(
-        numeroUSP: string,
-        relatorioSemestralDeclara: string,
+        num_usp: string,
         dataAtualizacaoLattes: string,
         resultadoUltimoRelatorio: 'Aprovado' | 'Aprovado com ressalvas' | 'Insatisfatório' | 'Não se aplica (é o meu primeiro relatório)',
         disciplinasAprovacoes: number,
@@ -99,8 +95,7 @@ export class Report {
         coordenadorParecer?: 'Aprovado' | 'Aprovado com ressalvas' | 'Insatisfatório' | 'Sem parecer',
         coordenadorComentario?: string,
     ) {
-        this.numeroUSP = numeroUSP;
-        this.relatorioSemestralDeclara = relatorioSemestralDeclara;
+        this.num_usp = num_usp;
         this.dataAtualizacaoLattes = dataAtualizacaoLattes;
         this.resultadoUltimoRelatorio = resultadoUltimoRelatorio;
         this.disciplinasAprovacoes = disciplinasAprovacoes;

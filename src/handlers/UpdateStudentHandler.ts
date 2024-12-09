@@ -12,16 +12,16 @@ export class UpdateStudentHandler implements IHandler {
 
     public async handleRequest(req: Request, res: Response): Promise<void> {
         const studentData = req.body;        
-        if (!validateCourseType(studentData.course)) {
-            res.status(400).json({ error: 'Invalid course' });
+        if (!validateCourseType(studentData.curso)) {
+            res.status(400).json({ error: 'Invalid curso' });
             return;
         }
-        const student = await this.StudentRepository.findOneByNumeroUSP(studentData.numero_usp);
+        const student = await this.StudentRepository.findOneByNumeroUSP(studentData.num_usp);
         if (!student) {
             res.status(404).json({ message: 'Student not found' });
             return;
         }
-        this.StudentRepository.update(student.numeroUSP, studentData);
-        res.status(200).json(student);
+        await this.StudentRepository.update(student.num_usp, studentData);
+        res.status(200).json(await this.StudentRepository.findOneByNumeroUSP(studentData.num_usp));
     }
 }

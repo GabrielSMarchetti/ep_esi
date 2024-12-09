@@ -16,8 +16,8 @@ export class CreateStudentHandler implements IHandler {
             res.status(400).json({ error: 'Invalid curso' });
             return;
         }
-        const studentExists = await this.StudentRepository.findBy({ numeroUSP: studentData.numeroUSP });
-        if (studentExists) {
+        const studentExists = await this.StudentRepository.findBy({ num_usp: studentData.num_usp });
+        if (studentExists && studentExists.length > 0) {
             res.status(409).json({ error: 'Student already exists' });
             return;
         }

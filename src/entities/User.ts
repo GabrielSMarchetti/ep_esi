@@ -7,8 +7,8 @@ export class User {
     @PrimaryColumn({ unique: true })
     username: string;
 
-    @Column()
-    salt: string;
+    @Column({ unique: true , nullable: true})
+    num_usp: string;
 
     @Column()
     password: string;
@@ -19,9 +19,9 @@ export class User {
     @Column("simple-array")
     roles: string[];
 
-    constructor(username: string, salt: string, password: string, user_type: UserTypes, roles: string[]) {
+    constructor(username: string, num_usp: string, password: string, user_type: UserTypes, roles: string[]) {
         this.username = username;
-        this.salt = salt;
+        this.num_usp = num_usp;
         this.password = password;
         this.user_type = user_type;
         this.roles = roles;

@@ -3,8 +3,8 @@ import { Request, Response } from 'express';
 import { ReportRepository } from "../repositories/ReportRepository";
 import { HandlerFactory } from "../factories/HandlerFactory";
 import { CreateReportHandler } from "../handlers/CreateReportHandler";
-import { UpdateReportProfessorFeedbackHandler } from "../handlers/UpdateReportMentorAvaliationHandler";
-import { UpdateReportCoordinatorAvaliationHandler as UpdateReportCoordinatorFeedbackHandler } from "../handlers/UpdateReportCoordinatorAvaliationHandler";
+import { UpdateReportMentorFeedbackHandler } from "../handlers/UpdateReportMentorFeedbackHandler";
+import { UpdateReportCoordinatorFeedbackHandler as UpdateReportCoordinatorFeedbackHandler } from "../handlers/UpdateReportCoordinatorFeedbackHandler";
 import { GetAllReportsByMentorHandler } from "../handlers/GetAllReportsByMentorHandler";
 import { StudentRepository } from "../repositories/StudentRepository";
 import { GetAllReportsByStudentHandler } from "../handlers/GetAllReportsByStudentHandler";
@@ -33,7 +33,7 @@ export class ReportController implements IController {
     }
 
     public async updateMentorFeedback(req: Request, res: Response): Promise<void> {
-        return this._HandlerFactory.create(UpdateReportProfessorFeedbackHandler).handleRequest(req, res);
+        return this._HandlerFactory.create(UpdateReportMentorFeedbackHandler).handleRequest(req, res);
     }
 
     public async updateCoordinatorFeedback(req: Request, res: Response): Promise<void> {

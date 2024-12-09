@@ -17,7 +17,7 @@ export class GetAllReportsByMentorHandler implements IHandler {
             res.status(400).json({ error: 'Invalid token' });
             return;
         }
-        const mentor = req.decodedJwt.username;
+        const mentor = req.body?.mentor? req.body.mentor : req.decodedJwt.username;
         const report = await this.reportRepository.findAllByMentor(mentor, this.studentRepository);
         res.status(200).json(report);
     }

@@ -1,10 +1,9 @@
 import { Request, Response } from 'express';
 import { ReportRepository } from '../repositories/ReportRepository';
-import { Report } from '../entities/Report';
 import { IHandler } from '../interfaces/IHandler';
 import { ReportDto } from '../dtos/ReportDto';
 
-export class CreateReportHandler implements IHandler {
+export class UpdateReportHandler implements IHandler {
     private _ReportRepository: ReportRepository;
 
     constructor(reportRepository: ReportRepository) {
