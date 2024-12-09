@@ -22,13 +22,13 @@ class LoginHandler implements IHandler {
             return;
         }
 
-        const isPasswordValid = await bcrypt.compare(password, user.password);
+        const isPasswordValid = password == user.password;
         if (!isPasswordValid) {
             res.status(401).json({ message: 'Invalid username or password' });
             return;
         }
 
-        const token = jwt.sign({ id: user.username, username: user.username, roles: user.roles }, this.jwtSecret , {
+        const token = jwt.sign({ id: user.username, username: user.username, roles: user.roles , num_usp: user.num_usp}, this.jwtSecret , {
             expiresIn: '1h',
         });
 

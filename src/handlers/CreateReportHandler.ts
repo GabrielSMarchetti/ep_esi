@@ -13,13 +13,12 @@ export class CreateReportHandler implements IHandler {
 
     public async handleRequest(req: Request, res: Response): Promise<void> {
         const reportDto: ReportDto = req.body;
-        const username: string | undefined = req.decodedJwt?.username;
-        if (!username) {
+        const num_usp: string | undefined = req.decodedJwt?.num_usp;
+        if (!num_usp) {
             res.status(404).send();
             return;
         }
-        const report = new Report(username,
-                reportDto.relatorioSemestralDeclara,
+        const report = new Report(num_usp,
                 reportDto.dataAtualizacaoLattes,
                 reportDto.resultadoUltimoRelatorio,
                 reportDto.disciplinasAprovacoes,

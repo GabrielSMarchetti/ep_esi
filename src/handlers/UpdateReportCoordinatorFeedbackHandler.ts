@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { ReportRepository } from '../repositories/ReportRepository';
 import { IHandler } from '../interfaces/IHandler';
 
-export class UpdateReportCoordinatorAvaliationHandler implements IHandler {
+export class UpdateReportCoordinatorFeedbackHandler implements IHandler {
     private _ReportRepository: ReportRepository;
 
     constructor(reportRepository: ReportRepository) {
@@ -10,7 +10,7 @@ export class UpdateReportCoordinatorAvaliationHandler implements IHandler {
     }
 
     public async handleRequest(req: Request, res: Response): Promise<void> {
-        const studentUsername = req.body.studentId;
+        const studentUsername = req.body.num_usp;
         const coordinatorOpinion = req.body.coordinatorOpinion;
         const coordinatorComment = req.body.coordinatorComment;
         const report = await this._ReportRepository.findLatestByNumeroUSP(studentUsername);
@@ -20,7 +20,7 @@ export class UpdateReportCoordinatorAvaliationHandler implements IHandler {
         }
         report.coordenadorParecer = coordinatorOpinion;
         report.coordenadorComentario = coordinatorComment;
-        await this._ReportRepository.save((report));
-        res.status(200).send();
+        const new_report = await this._ReportRepository.save((report));
+        res.status(200).send(new_report);
     }
 }

@@ -6,8 +6,8 @@ export class StudentRepository extends Repository<Student> {
         super(Student, dataSource.manager);
     }
 
-    async findOneByNumeroUSP(numeroUSP: string): Promise<Student | undefined> {
-        const Student = await this.findOneBy({ numeroUSP });
+    async findOneByNumeroUSP(num_usp: string): Promise<Student | undefined> {
+        const Student = await this.findOneBy({ num_usp });
         return Student ?? undefined;
     }
 

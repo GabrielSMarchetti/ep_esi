@@ -4,7 +4,7 @@ import { StudentRepository } from "../repositories/StudentRepository";
 import { HandlerFactory } from "../factories/HandlerFactory";
 import { CreateStudentHandler } from "../handlers/CreateStudentHandler";
 import { UpdateStudentHandler } from "../handlers/UpdateStudentHandler";
-import { GetAllMentorStudentsHandler } from "../handlers/GetAllMentorStudents";
+import { GetAllMentorStudentsHandler } from "../handlers/GetAllMentorStudentsHandler";
 
 export class StudentController implements IController {
     private _studentRepository: StudentRepository;

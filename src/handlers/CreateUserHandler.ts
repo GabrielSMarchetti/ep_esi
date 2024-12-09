@@ -21,9 +21,6 @@ export class CreateUserHandler implements IHandler {
             res.status(400).json({ error: 'Invalid usertype' });
             return;
         }
-        const salt = await bcrypt.genSalt(10);
-        userData.password = await bcrypt.hash(userData.password, salt);
-        userData.salt = salt;
         const user = await this.userRepository.save(userData);
         res.status(200).json(user);
     }
